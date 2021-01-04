@@ -1,0 +1,13 @@
+.ipynb_checkpoints
+.vagrant
+creds
+comments.txt
+__pycache__
+
+.idea
+venv/
+uncased_L-12_H-768_A-12/
+notebooks/.ipynb_checkpoints
+notebooks/*.py
+notebooks/*.pyc
+notebooks/*.pyo
