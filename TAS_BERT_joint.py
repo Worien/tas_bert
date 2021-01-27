@@ -459,7 +459,7 @@ def main():
 				model.zero_grad()
 				global_step += 1
 
-
+		torch.save(model.state_dict(), os.path.join(args.output_dir, f'model_ep_{epoch}.bin'))
 		# eval_test
 		if args.eval_test:
 
