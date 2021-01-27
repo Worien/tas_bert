@@ -1,7 +1,6 @@
 absl-py==0.9
 torch==1.0.1
 torchvision==0.2.2
-cudatoolkit==10.0
 tensorflow==1.13.1
 pytorch-crf==0.7.2
 numpy==1.16.4
