@@ -500,9 +500,16 @@ def main():
 
 					ner_label_ids = ner_label_ids.to('cpu').numpy()
 					ner_mask = ner_mask.to('cpu').numpy()
-
+					print("outputs")
+					print(outputs)
+					print("ner_label_list")
+					print(ner_label_list)
+					print("ner_test_tokens")
+					print(ner_test_tokens)
 
 					for output_i in range(len(outputs)):
+						print("output_i")
+						print(output_i)
 						# category & polarity
 						f_test.write(str(label_ids[output_i]))
 						f_test.write('\t')
