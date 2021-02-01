@@ -61,6 +61,9 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 
 	features = []
 	all_tokens = []
+	print("convert_examples_to_features");
+	print(examples[0].text_a)
+	print(examples[0].text_b)
 	for (ex_index, example) in enumerate(tqdm(examples)):
 		if tokenize_method == "word_split":
 			# word_split
@@ -142,7 +145,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 		tokens.append("[SEP]")
 		segment_ids.append(0)
 		ner_label_ids.append(ner_label_map["[PAD]"])
-
+		print("tokens_b")
+		print(tokens_b)
 		if tokens_b:
 			for token in tokens_b:
 				tokens.append(token)
