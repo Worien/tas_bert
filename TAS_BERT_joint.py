@@ -506,10 +506,13 @@ def main():
 					print(ner_label_list)
 					print("ner_test_tokens")
 					print(ner_test_tokens)
+					print("label_ids")
+					print(label_ids)
+					print("ner_logits")
+					print(ner_logits)
+
 
 					for output_i in range(len(outputs)):
-						print("output_i")
-						print(output_i)
 						# category & polarity
 						f_test.write(str(label_ids[output_i]))
 						f_test.write('\t')
