@@ -358,7 +358,7 @@ def main():
 	num_train_steps = int(
 		len(train_examples) / args.train_batch_size * args.num_train_epochs)
 
-	train_features, _ = convert_examples_to_features(
+	train_features, _, _ = convert_examples_to_features(
 		train_examples, label_list, args.max_seq_length, tokenizer, ner_label_list, args.tokenize_method)
 	logger.info("***** Running training *****")
 	logger.info("  Num examples = %d", len(train_examples))
