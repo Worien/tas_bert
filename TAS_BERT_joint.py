@@ -61,7 +61,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 
 	features = []
 	all_tokens = []
-	print("convert_examples_to_features");
+	all_b_tokens = []
+	print("convert_examples_to_features")
 	print(examples[0].text_a)
 	print(examples[0].text_b)
 	for (ex_index, example) in enumerate(tqdm(examples)):
@@ -126,6 +127,7 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 		# used as as the "sentence vector". Note that this only makes sense because
 		# the entire model is fine-tuned.
 		tokens = []
+		b_tokens = []
 		segment_ids = []
 		ner_label_ids = []
 		tokens.append("[CLS]")
@@ -145,11 +147,10 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 		tokens.append("[SEP]")
 		segment_ids.append(0)
 		ner_label_ids.append(ner_label_map["[PAD]"])
-		print("tokens_b")
-		print(tokens_b)
 		if tokens_b:
 			for token in tokens_b:
 				tokens.append(token)
+				b_tokens.append(token)
 				segment_ids.append(1)
 				ner_label_ids.append(ner_label_map["[PAD]"])
 			tokens.append("[SEP]")
@@ -186,8 +187,9 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 						label_id=label_id,
 						ner_label_ids=ner_label_ids,
 						ner_mask=ner_mask))
+		all_b_tokens.append(b_tokens)
 		all_tokens.append(tokens[0:token_length])
-	return features, all_tokens
+	return features, all_tokens, all_b_tokens
 
 
 def _truncate_seq_pair(tokens_a, tokens_b, ner_labels_a, max_length):
@@ -380,7 +382,7 @@ def main():
 	# test set
 	if args.eval_test:
 		test_examples = processor.get_test_examples(args.data_dir)
-		test_features, test_tokens = convert_examples_to_features(
+		test_features, test_tokens, all_b_tokens = convert_examples_to_features(
 			test_examples, label_list, args.max_seq_length, tokenizer, ner_label_list, args.tokenize_method)
 		print("test_tokens")
 		print(test_tokens)
@@ -485,6 +487,8 @@ def main():
 					ner_mask = ner_mask.to(device)
 					# test_tokens is the origin word in sentences [batch_size, sequence_length]
 					ner_test_tokens = test_tokens[batch_index*args.eval_batch_size:(batch_index+1)*args.eval_batch_size]
+					ner_b_tokens = all_b_tokens[batch_index*args.eval_batch_size:(batch_index+1)*args.eval_batch_size]
+
 					batch_index += 1
 
 					with torch.no_grad():
@@ -512,6 +516,8 @@ def main():
 					print(ner_label_list)
 					print("ner_test_tokens")
 					print(ner_test_tokens)
+					print("ner_b_tokens")
+					print(ner_b_tokens)
 					print("label_ids")
 					print(label_ids)
 					print("ner_logits")
