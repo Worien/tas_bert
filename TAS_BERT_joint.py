@@ -533,9 +533,14 @@ def main():
 
 						# sentence & ner labels
 						sentence_clean = []
+						aspect_sentiment_clean = []
 						label_true = []
 						label_pre = []
 						sentence_len = len(ner_test_tokens[output_i])
+						aspect_sentiment_len = len(ner_b_tokens[output_i])
+						for i in range(aspect_sentiment_len):
+							if not ner_test_tokens[output_i][i].startswith('##'):
+								aspect_sentiment_clean.append(ner_b_tokens[output_i][i])
 
 						for i in range(sentence_len):
 							if not ner_test_tokens[output_i][i].startswith('##'):
@@ -544,6 +549,8 @@ def main():
 								label_pre.append(ner_label_list[ner_logits[output_i][i]])
 
 						f_test.write(' '.join(sentence_clean))
+						f_test.write('\t')
+						f_test.write(' '.join(aspect_sentiment_clean))
 						f_test.write('\t')
 						f_test.write(' '.join(label_true))
 						f_test.write("\t")
