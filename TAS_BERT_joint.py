@@ -378,6 +378,8 @@ def main():
 		test_examples = processor.get_test_examples(args.data_dir)
 		test_features, test_tokens = convert_examples_to_features(
 			test_examples, label_list, args.max_seq_length, tokenizer, ner_label_list, args.tokenize_method)
+		print("test_tokens")
+		print(test_tokens)
 
 		all_input_ids = torch.tensor([f.input_ids for f in test_features], dtype=torch.long)
 		all_input_mask = torch.tensor([f.input_mask for f in test_features], dtype=torch.long)
