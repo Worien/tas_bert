@@ -539,7 +539,7 @@ def main():
 						sentence_len = len(ner_test_tokens[output_i])
 						aspect_sentiment_len = len(ner_b_tokens[output_i])
 						for i in range(aspect_sentiment_len):
-							if not ner_test_tokens[output_i][i].startswith('##'):
+							if not ner_b_tokens[output_i][i].startswith('##'):
 								aspect_sentiment_clean.append(ner_b_tokens[output_i][i])
 
 						for i in range(sentence_len):
