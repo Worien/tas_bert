@@ -29,7 +29,9 @@ def get_aspect_sentiment_compose_set(path, file_name, output_path, output_file):
 						sentiment_value = 1
 					elif i == 2 and rating == 3:
 						sentiment_value = 1
-					fout.write(reviewId + '\t' + str(sentiment_value) + '\t' + aspect_sentiment + '\t' + sentance + '\t' + '00000000' + '\n')
+					sentence_arr = sentance.strip().split(' ')
+					ner_tags = ['O'] * len(sentence_arr)
+					fout.write(reviewId + '\t' + str(sentiment_value) + '\t' + aspect_sentiment + '\t' + sentance + '\t' + ''.join(ner_tags) + '\n')
 
 
 	# with open(os.path.join(path, file_name), 'r', encoding='utf-8') as fin:
