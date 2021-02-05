@@ -30,24 +30,11 @@ def get_aspect_sentiment_compose_set(path, file_name, output_path, output_file):
 					elif i == 2 and rating == 3:
 						sentiment_value = 1
 					sentence_arr = sentance.strip().split(' ')
-					ner_tags = ['O'] * len(sentence_arr)
+					ner_tags = ['O'] * (len(sentence_arr) + 10)
 					if len(ner_tags) > 1:
 						fout.write(reviewId + '\t' + str(sentiment_value) + '\t' + aspect_sentiment + '\t' + sentance + '\t' + ' '.join(ner_tags) + '\n')
 
-
-	# with open(os.path.join(path, file_name), 'r', encoding='utf-8') as fin:
-	# 	fin.readline()
-	# 	for line in fin:
-	# 		line_arr = line.strip().split('\t')
-	# 		if line_arr[6] == 'yes':	# entailed == yes
-	# 			if line_arr[3] not in aspect_set:
-	# 				aspect_set.append(line_arr[3])	# aspect
-	#
 	compose_set = []
-	# for ca in aspect_set:
-	# 	for po in sentiment_set:
-	# 		compose_set.append(ca + ' ' + po)
-	#
 	return compose_set
 
 if __name__ == '__main__':
