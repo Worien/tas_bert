@@ -71,17 +71,15 @@ def get_aspect_sentiment_compose_set(path, file_name, output_path, output_file):
 
 
 							else:  # has no punctuation
-								print("len sen", len(sentence))
-								print("len net_tags", )
 								sentence_clear.append(sentence[x])
 								ner_tags_clear.append(ner_tags[x])
 
 					assert '' not in sentence_clear
 					assert len(sentence_clear) == len(ner_tags_clear)
-					print("sentence_clear", sentence_clear)
-					print("ner_tags_clear", ner_tags_clear)
+					print("sentence_clear len", len(sentence_clear))
+					print("ner_tags_clear len", len(ner_tags_clear))
 					if len(ner_tags) > 1:
-						fout.write(reviewId + '\t' + str(sentiment_value) + '\t' + aspect_sentiment + '\t' + ' '.join(sentence) + '\t' + ' '.join(ner_tags) + '\n')
+						fout.write(reviewId + '\t' + str(sentiment_value) + '\t' + aspect_sentiment + '\t' + ' '.join(sentence_clear) + '\t' + ' '.join(ner_tags_clear) + '\n')
 
 	compose_set = []
 	return compose_set
