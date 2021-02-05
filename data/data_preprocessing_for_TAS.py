@@ -55,6 +55,7 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 			if sentence_id != pre_sentence_id:	# this is a new sentence
 				if pre_start == True:
 					for x in compose_set:
+						# print("record_of_one_sentence_ner_tag", record_of_one_sentence_ner_tag)
 						# create yes line of this sentence
 						if x in record_of_one_sentence:
 							fout.write(pre_sentence_id + '\t' + '1' + '\t' + x + '\t' + pre_sentence + '\t' + record_of_one_sentence_ner_tag[x] + '\n')
@@ -137,7 +138,8 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 
 				assert '' not in sentence_clear
 				assert len(sentence_clear) == len(ner_tags_clear)
-
+				print("sentence_clear", sentence_clear)
+				print("ner_tags_clear", ner_tags_clear)
 				# get aspect&sentiment
 				cate_pola = line_arr[3] + ' ' + line_arr[4]
 
