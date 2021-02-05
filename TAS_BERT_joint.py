@@ -88,6 +88,7 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 					print("i", i)
 					print("token_bias_num", token_bias_num)
 					print("tokens_a", tokens_a)
+					print("tokens_a len", len(tokens_a))
 					index = i - token_bias_num
 					if len(ner_labels_org) <= index:
 						ner_labels_a.append(ner_labels_org[index-1])
