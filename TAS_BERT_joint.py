@@ -83,6 +83,9 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 					token_bias_num += 1
 				else:
 					word_num += 1
+					print("ner_labels_org len", len(ner_labels_org))
+					print("i", i)
+					print("token_bias_num", token_bias_num)
 					ner_labels_a.append(ner_labels_org[i - token_bias_num])
 
 			assert word_num == len(ner_labels_org)
