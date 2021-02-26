@@ -53,7 +53,7 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 		for line in fin:
 			line_arr = line.strip().split('\t')
 			sentence_id = line_arr[0]
-			all_aspects.append(line_arr)
+			all_aspects.append(line_arr[3])
 			if sentence_id != pre_sentence_id:	# this is a new sentence
 				if pre_start == True:
 					for x in compose_set:
