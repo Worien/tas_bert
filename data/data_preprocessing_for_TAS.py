@@ -38,6 +38,7 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 	zero_data_nums = 0
 	max_len = 0
 	entity_sum = 0
+	all_aspects = []
 	if not os.path.exists(output_path):
 		os.makedirs(output_path)
 	with open(os.path.join(input_path, TXT_file(input_file)), 'r', encoding='utf-8') as fin, open(os.path.join(output_path, TSV_file(output_file)), 'w', encoding='utf-8') as fout:
@@ -52,6 +53,7 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 		for line in fin:
 			line_arr = line.strip().split('\t')
 			sentence_id = line_arr[0]
+			all_aspects.append(line_arr)
 			if sentence_id != pre_sentence_id:	# this is a new sentence
 				if pre_start == True:
 					for x in compose_set:
@@ -165,6 +167,7 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 					record_of_one_sentence_ner_tag[cate_pola] = ' '.join(ner_tags_clear)
 					entity_sum += 1
 	print('entity_sum: ', entity_sum)
+	print("line_arr = ",set(all_aspects))
 	print('max_sen_len: ', max_len)
 	print('sample ratio: ', str(one_data_nums), '-', str(zero_data_nums))
 
