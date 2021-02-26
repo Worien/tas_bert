@@ -166,8 +166,10 @@ def create_dataset_file(input_path, output_path, input_file, output_file, compos
 					record_of_one_sentence.add(cate_pola)
 					record_of_one_sentence_ner_tag[cate_pola] = ' '.join(ner_tags_clear)
 					entity_sum += 1
+	print("all_aspects = ", all_aspects)
+	unique_aspects = set(all_aspects)
 	print('entity_sum: ', entity_sum)
-	print("line_arr = ",set(all_aspects))
+	print("unique_aspects = ", unique_aspects)
 	print('max_sen_len: ', max_len)
 	print('sample ratio: ', str(one_data_nums), '-', str(zero_data_nums))
 
